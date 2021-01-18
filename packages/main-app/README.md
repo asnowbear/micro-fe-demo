@@ -1,4 +1,4 @@
-# base-frame
+# main-app
 
 ## Project setup
 ```
