@@ -1,8 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
+/**
+ * @name 统一注册外部插件、样式、服务等
+ */
+import './core/install'
 
-Vue.config.productionTip = false
+import './core/render'
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+/**
+ * @name 验证登陆身份并启动微应用
+ */
+import microAppStart from './core/auth'
+microAppStart()
