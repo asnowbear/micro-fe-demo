@@ -34,6 +34,9 @@ const qianKunStart = (list) => {
       activeRule: i.routerBase,
       props: { ...props, routes: i.data, routerBase: i.routerBase }
     })
+    if (i.defaultRegister) {
+        defaultApp = i.routerBase
+    }
   })
 
   registerMicroApps(
@@ -56,6 +59,8 @@ const qianKunStart = (list) => {
       ],
     },
   )
+
+  console.log('sdfdsfd', defaultApp + '/')
 
   /**
    * @name 设置默认进入的子应用
