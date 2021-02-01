@@ -4,6 +4,8 @@ import App from "@/App.vue";
 import store from "@/store";
 import selfRoutes from "@/router/routes";
 
+console.log('createWebHistory', createWebHistory)
+
 /**
  * @name 导入自定义路由匹配方法
  */

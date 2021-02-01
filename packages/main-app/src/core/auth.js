@@ -1,6 +1,10 @@
 
-import store from "../store";
 
+
+
+
+
+import store from "../store";
 import { DataType } from "wl-core"
 
 import { getStorageToken } from "@/utils/user-vali"
@@ -54,6 +58,8 @@ const getAppConfigs = () => {
 
 const microAppStart = () => {
   const token = getStorageToken();
+  console.log('【token】', token)
+
   /**
    * @name 已登录状态获取服务端微应用注册表
    */

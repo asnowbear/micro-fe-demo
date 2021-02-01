@@ -4,7 +4,7 @@ export default {
     size: 10,
     token: ''
   },
-  motations: {
+  mutations: {
     SET_PAGE_SIZE (state, data) {
       state.size = data
     },

@@ -60,7 +60,7 @@ const qianKunStart = (list) => {
     },
   )
 
-  console.log('sdfdsfd', defaultApp + '/')
+//   console.log('sdfdsfd', defaultApp + '/')
 
   /**
    * @name 设置默认进入的子应用
