@@ -2,18 +2,19 @@ const fs = require('fs')
 const path = require('path')
 const util = require('util')
 const { log } = require('./utils/log')
-const sub_app_path = path.join(path.resolve(), "/packages")
-console.log('sub-app-path', sub_app_path)
+// 当前命令执行目录+"/packages"
+const sub_app_path = path.resolve("packages")
+__c = console.log
+const jpm = process.argv[2]
+
+__c('应用目录:', sub_app_path)
+__c('node 包管理名称', jpm)
 
 const sub_apps = fs
     .readdirSync(sub_app_path)
     .filter(i => /^server|main-app|subapp/.test(i))
 
-// console.log('sub-apps', sub_apps)    
-
 const inquirer = require('inquirer')
-
-// return
 
 // promisify方法让对象具备promise特性
 /**
@@ -25,12 +26,6 @@ const inquirer = require('inquirer')
 const exec = util.promisify(require('child_process').exec)
 
 const q = [
-    {
-        type: 'list',
-        name: 'npm',
-        message: '请选择要使用的包管理器',
-        choices: ['yarn', 'npm', 'cnpm']
-    },
     {
         type: 'checkbox',
         name: 'apps',
@@ -47,28 +42,28 @@ const q = [
 
 inquirer.prompt(q).then(async (answer) => {
     const sub_apps_ = answer.apps.length ? answer.apps : sub_apps
-    const npm = answer.npm + ' install'
+    const npm = jpm + ' install'
     const skip = answer.skip
-    console.log('npm script', npm)
     install(sub_apps_, npm, skip)
 })
 
 function install(sub_apps_, npm, skip) {
     log.red(`即将进入模块并下载依赖:${JSON.stringify(sub_apps_)} ing...`)
-    sub_apps_.forEach( i => {
+    sub_apps_.forEach( ii => {
+        const i = `packages/${ii}`
         if (!fs.existsSync(`${i}/package.json`)) {
-            log.error(`${i}应用缺少package.json文件，将跳过此应用`)
+            log.red(`${i}应用缺少package.json文件，将跳过此应用`)
             return false
         }
 
         if (fs.existsSync(`${i}/node_modules` && skip)) {
-            log.green(`${i} 应用以及检测到node_modules目录，将跳过此应用`)
+            log.green(`${i}应用以及检测到node_modules目录，将跳过此应用`)
             return false
         }
 
-        log.blue(`${i} 开始下载，耗时较久请耐心等待...`)
-        log.red('path.resolve(i)】】',path.resolve(i) )
-        // const { stdout, stderr } =  exec(npm, { cwd: path.resolve(i)});
+        log.red(`${i} 开始下载，耗时较久请耐心等待...`)
+        // log.red('path.resolve(i)】】',path.resolve(i) )
+        const { stdout, stderr } =  exec(npm, { cwd: path.resolve(i)});
         log.cyan(i, 'success', stdout)
         log.red(i, 'error', stderr)
     })

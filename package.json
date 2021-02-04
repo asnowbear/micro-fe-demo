@@ -2,9 +2,12 @@
   "name": "root",
   "private": true,
   "scripts": {
-      "yinit": "node packages/config/install.js yarn"
+      "init": "node packages/config/install.js npm",
+      "yinit": "node packages/config/install.js yarn",
+      "cinit": "node packages/config/install.js cnpm",
+      "serve": "node packages/config/start.js cnpm"
   },
   "devDependencies": {
-    "lerna": "^3.22.1"
+     "lerna": "^3.22.1"
   }
 }
