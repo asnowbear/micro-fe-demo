@@ -1,9 +1,12 @@
+/**
+ * qinakun的几个主要方法
+ */
 import {
-  registerMicroApps,
-  runAfterFirstMounted,
-  setDefaultMountApp,
-  start,
-  initGlobalState
+  registerMicroApps,   // 注册子应用
+  runAfterFirstMounted,// 回调函数，微前端启动进入第一个应用成功后的回调
+  setDefaultMountApp,  // 设置默认进入的子应用
+  start,               // 启动微服务
+  initGlobalState      // 启动应用间通信机制
 } from "qiankun"
 
 import store from '../store'
@@ -39,6 +42,10 @@ const qianKunStart = (list) => {
     }
   })
 
+
+  /**
+   * @name 注册子应用
+   */
   registerMicroApps(
     apps,
     {
@@ -59,8 +66,6 @@ const qianKunStart = (list) => {
       ],
     },
   )
-
-//   console.log('sdfdsfd', defaultApp + '/')
 
   /**
    * @name 设置默认进入的子应用

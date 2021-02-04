@@ -3,6 +3,7 @@
  */
 import './core/install'
 
+// 实例化Vue，并挂载
 import './core/render'
 
 /**

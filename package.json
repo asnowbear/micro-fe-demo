@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+      "yinit": "node packages/config/install.js yarn"
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   }

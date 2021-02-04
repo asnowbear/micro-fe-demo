@@ -1,10 +1,6 @@
 
+import store from "../store"
 
-
-
-
-
-import store from "../store";
 import { DataType } from "wl-core"
 
 import { getStorageToken } from "@/utils/user-vali"
